@@ -8,11 +8,23 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "generate:prod": "cross-env NODE_ENV=\"production\" nuxt generate"
   },
   "dependencies": {
-    "nuxt": "^2.0.0",
-    "@nuxtjs/bulma": "^1.2.1"
+    "@nuxtjs/bulma": "^1.2.1",
+    "@nuxtjs/prismic": "^1.2.1",
+    "contentful": "^7.14.4",
+    "cross-env": "^7.0.2",
+    "dotenv": "^8.2.0",
+    "node-sass": "^4.14.1",
+    "nuxt": "^2.12.2",
+    "sass-loader": "^8.0.2",
+    "vue-router": "^3.1.6",
+    "vue-scrollto": "^2.18.1",
+    "vuex-persistedstate": "^3.0.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@contentful/rich-text-html-renderer": "^13.4.0"
+  }
 }

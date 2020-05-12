@@ -1,6 +1,8 @@
-
+const environment = process.env.NODE_ENV || "development";
+const envSet = require(`./env.${environment}.js`)
 export default {
   mode: 'universal',
+  env: envSet,
   /*
   ** Headers of the page
   */
@@ -12,7 +14,9 @@ export default {
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.6.1/css/all.css' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Lato:300,400,700,900' }
     ]
   },
   /*
@@ -28,6 +32,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '~plugins/vue-scrollto',
+    '~plugins/contentful.js'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -57,5 +63,8 @@ export default {
     */
     extend (config, ctx) {
     }
+  },
+  generate: {
+    fallback: '404.html'
   }
 }
