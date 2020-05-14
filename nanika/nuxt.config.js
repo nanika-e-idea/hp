@@ -1,5 +1,9 @@
-const environment = process.env.NODE_ENV || "development";
+const environment = process.env.NODE_ENV || "development"
 const envSet = require(`./env.${environment}.js`)
+
+const articles = require('./static/json/article.json')
+//import outputStaticData from './modules/createStaticJson'
+
 export default {
   mode: 'universal',
   env: envSet,
@@ -39,6 +43,7 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    '~/modules/createStaticJson'
   ],
   /*
   ** Nuxt.js modules

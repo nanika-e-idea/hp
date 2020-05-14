@@ -8,11 +8,11 @@
       <div class="container">
         <h1>Section 01</h1>
         <ul>
-          <li v-for="(post, index) in posts" :key="index">
-            <h1>{{post.fields.title}}</h1>
+          <li v-for="(article, index) in articles" :key="index">
+            <h1>{{article.fields.title}}</h1>
             <v-row>
               <v-col>
-                <div v-html="toHtmlString(post.fields.body)"></div>
+                <div v-html="toHtmlString(article.fields.body)"></div>
               </v-col>
             </v-row>
           </li>
@@ -59,26 +59,18 @@
 <script>
 import Header from "~/components/Header.vue"
 import Footer from "~/components/Footer.vue"
-import { createClient } from '~/plugins/contentful.js'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
-
-const client = createClient()
+import articles from '~/static/json/article.json'
 
 export default {
   components: {
     Header,
     Footer
   },
-  asyncData({ params}) {
-    // 記事一覧を取得
-    return client
-      .getEntries('content')
-      .then(entries => {
-        return {
-          posts: entries.items
-        }
-      })
-      .catch(console.error)
+  asyncData () {
+    return {
+      articles: articles.items,
+    }
   },
   methods: {
     toHtmlString(obj) {
