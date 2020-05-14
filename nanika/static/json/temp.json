@@ -1,0 +1,39 @@
+{ 
+"sys": {
+  "space": {
+    "sys": { 
+      "type": "Link", 
+      "linkType": "Space", 
+      "id": "1z8npxdny2s3" 
+    } 
+  }, 
+  "id": "5i2a12U8MLd2vsEwzLgFp", 
+  "type": "Asset", 
+  "createdAt": "2020-05-14T04:22:45.929Z", 
+  "updatedAt": "2020-05-14T04:22:45.929Z", 
+  "environment": { 
+    "sys": { 
+        "id": "master", 
+        "type": "Link", 
+        "linkType": "Environment" 
+    } 
+  }, 
+  "revision": 1, 
+  "locale": "en-US" 
+}, 
+"fields": { 
+    "title": "teat02_reflection", 
+    "file": { 
+        "url": "//images.ctfassets.net/1z8npxdny2s3/5i2a12U8MLd2vsEwzLgFp/1760058e75c9605a99861c67c4c54cb0/DSC00721.JPG", 
+        "details": { 
+            "size": 397696, 
+            "image": { 
+                "width": 1616, 
+                "height": 1080 
+            } 
+        }, 
+        "fileName": "DSC00721.JPG", 
+        "contentType": "image/jpeg" 
+    } 
+} 
+}

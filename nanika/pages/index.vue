@@ -10,11 +10,8 @@
         <ul>
           <li v-for="(post, index) in posts" :key="index">
             <h1>{{post.fields.title}}</h1>
-            <v-row>
-              <v-col>
+            <img v-if="post.fields.image" :src="'https:'+post.fields.image.fields.file.url" :alt="post.fields.image.fields.title" />
                 <div v-html="toHtmlString(post.fields.body)"></div>
-              </v-col>
-            </v-row>
           </li>
         </ul>
       </div>

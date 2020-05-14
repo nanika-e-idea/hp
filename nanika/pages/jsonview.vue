@@ -8,13 +8,10 @@
       <div class="container">
         <h1>Section 01</h1>
         <ul>
-          <li v-for="(article, index) in articles" :key="index">
-            <h1>{{article.fields.title}}</h1>
-            <v-row>
-              <v-col>
-                <div v-html="toHtmlString(article.fields.body)"></div>
-              </v-col>
-            </v-row>
+          <li v-for="(post, index) in posts" :key="index">
+            <h1>{{post.fields.title}}</h1>
+            <img v-if="post.fields.image" :src="'https:'+post.fields.image.fields.file.url" :alt="post.fields.image.fields.title" />
+                <div v-html="toHtmlString(post.fields.body)"></div>
           </li>
         </ul>
       </div>
@@ -60,7 +57,14 @@
 import Header from "~/components/Header.vue"
 import Footer from "~/components/Footer.vue"
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
+import { BLOCKS, MARKS } from '@contentful/rich-text-types'
 import articles from '~/static/json/article.json'
+
+const options = {
+  renderNode: {
+    [BLOCKS.EMBEDDED_ASSET]: ({ data: { target: { fields }}}) =>`<img src="${fields.file.url}" height="${fields.file.details.image.height}" width="${fields.file.details.image.width}" alt="${fields.description}"/>`,
+  }
+}
 
 export default {
   components: {
@@ -69,12 +73,12 @@ export default {
   },
   asyncData () {
     return {
-      articles: articles.items,
+      posts: articles.items,
     }
   },
   methods: {
     toHtmlString(obj) {
-      return documentToHtmlString(obj)
+      return documentToHtmlString(obj, options)
     }
   }
 }
