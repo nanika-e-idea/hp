@@ -56,30 +56,29 @@
 <script>
 import Header from "~/components/Header.vue"
 import Footer from "~/components/Footer.vue"
-import { createClient } from '~/plugins/contentful.js'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
+import { BLOCKS, MARKS } from '@contentful/rich-text-types'
+import articles from '~/static/json/article.json'
 
-const client = createClient()
+const options = {
+  renderNode: {
+    [BLOCKS.EMBEDDED_ASSET]: ({ data: { target: { fields }}}) =>`<img src="${fields.file.url}" height="${fields.file.details.image.height}" width="${fields.file.details.image.width}" alt="${fields.description}"/>`,
+  }
+}
 
 export default {
   components: {
     Header,
     Footer
   },
-  asyncData({ params}) {
-    // 記事一覧を取得
-    return client
-      .getEntries(process.env.CTFL_CONTENT_TYPE_POST)
-      .then(entries => {
-        return {
-          posts: entries.items
-        }
-      })
-      .catch(console.error)
+  asyncData () {
+    return {
+      posts: articles.items,
+    }
   },
   methods: {
     toHtmlString(obj) {
-      return documentToHtmlString(obj)
+      return documentToHtmlString(obj, options)
     }
   }
 }
